@@ -23,6 +23,13 @@ io.on('connection',(socket)=>{
         users[socket.id]=data.username
     })
 
+    socket.on('typing', () => {
+    const username = users[socket.id];
+    if (username) {
+        socket.broadcast.emit('user-typing', username);
+    }
+});
+
 })
 
 app.use('/',express.static(path.join(__dirname,'public')))

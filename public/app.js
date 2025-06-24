@@ -37,7 +37,20 @@ $('#inp').on('keypress', (e) => {
 });
 
 
+// Emit 'typing' when user types something
+$('#inp').on('input', () => {
+    socket.emit('typing');
+});
 
+// Show typing indicator when another user is typing
+socket.on('user-typing', (username) => {
+    $('#typing').text(`${username} is typing...`);
+    
+    clearTimeout(window.typingTimeout);
+    window.typingTimeout = setTimeout(() => {
+        $('#typing').text('');
+    }, 1000); // clear after 1 second
+});
 
 
 
