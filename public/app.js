@@ -30,6 +30,14 @@ $('#login-btn').on('click',()=>{
     $("#username").val("")
 })
 
+$('#inp').on('keypress', (e) => {
+    if (e.key === 'Enter') {
+        $('#send-btn').click();
+    }
+});
+
+
+
 
 
 
