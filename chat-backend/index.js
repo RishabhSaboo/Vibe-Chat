@@ -15,6 +15,15 @@ app.use(cors({
   credentials: true
 }));
 
+// ✅ Initialize io before using it!
+const io = socketio(server, {
+  cors: {
+    origin: FRONTEND_ORIGIN,
+    methods: ["GET", "POST"],
+    credentials: true
+  }
+});
+
 const users = {};
 
 io.on('connection', (socket) => {
