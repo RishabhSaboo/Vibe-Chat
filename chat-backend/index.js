@@ -7,7 +7,7 @@ const socketio = require('socket.io');
 
 const io = socketio(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "https://vibe-chat-1-6u2n.onrender.com/",
     methods: ["GET", "POST"]
   }
 });
