@@ -1,16 +1,19 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const http = require('http');
 const path = require('path');
 const server = http.createServer(app);
 const socketio = require('socket.io');
 
-const io = socketio(server, {
-  cors: {
-    origin: "https://vibe-chat-1-6u2n.onrender.com/",
-    methods: ["GET", "POST"]
-  }
-});
+// 💡 Allow correct frontend origin (no slash at the end!)
+const FRONTEND_ORIGIN = "https://vibe-chat-aoly.onrender.com";
+
+app.use(cors({
+  origin: FRONTEND_ORIGIN,
+  methods: ["GET", "POST"],
+  credentials: true
+}));
 
 const users = {};
 
